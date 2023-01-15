@@ -21,7 +21,7 @@ $(document).ready(function () {
         localStorage.setItem(time, text);
     })
 
-  function timeTracker() {
+  function hourTracker() {
     //get current number of hours in 24 hour clock
     var timeNow = dayjs().format("HH");
     console.log(timeNow);
@@ -29,6 +29,7 @@ $(document).ready(function () {
     // loop over time blocks
     $(".time-block").each(function () {
         var blockTime = parseInt($(this).attr("id").split("hour-")[1]);
+        console.log(blockTime);
 
         // To check the time and add the classes for background indicators
         if (blockTime < timeNow) {
@@ -36,10 +37,11 @@ $(document).ready(function () {
             $(this).removeClass("present");
             $(this).addClass("past");
         }
-        else if (blockTime === timeNow) {
+        else if (blockTime == timeNow) {
+            $(this).addClass("present");
             $(this).removeClass("past");
             $(this).removeClass("future");
-            $(this).addClass("present");
+            
         }
         else {
             $(this).removeClass("present");
@@ -62,7 +64,7 @@ $(document).ready(function () {
     $("#hour-16 .description").val(localStorage.getItem("hour-16"));
     $("#hour-17 .description").val(localStorage.getItem("hour-17"));
   
-    timeTracker();
+    hourTracker();
 
   })
 
